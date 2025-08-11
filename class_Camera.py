@@ -9,7 +9,7 @@ class Camera:
         config = self.cam.create_video_configuration(main={"format": 'RGB888', "size": (640, 480)})
         self.cam.configure(config)
         self.cam.start()
-        time.sleep(1)  # Allow the camera to warm up
+        time.sleep(1) 
         
         # Circle detection parameters
         self.min_radius = min_radius
