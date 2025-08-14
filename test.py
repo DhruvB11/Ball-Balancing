@@ -1,19 +1,27 @@
 import RPi.GPIO as GPIO
 import time
 
-STEP_PIN = 17
-DIR_PIN = 27
+DIR = 27
+STEP = 17
+ENA = 22  # optional
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(STEP_PIN, GPIO.OUT)
-GPIO.setup(DIR_PIN, GPIO.OUT)
+GPIO.setup(DIR, GPIO.OUT)
+GPIO.setup(STEP, GPIO.OUT)
+GPIO.setup(ENA, GPIO.OUT)
 
-GPIO.output(DIR_PIN, GPIO.HIGH)  # or LOW
+# Enable driver
+GPIO.output(ENA, GPIO.LOW)
 
+# Set direction
+GPIO.output(DIR, GPIO.HIGH)
+time.sleep(0.0002)  # 200 µs delay for TB6600 direction setup
+
+# Step 200 steps
 for _ in range(200):
-    GPIO.output(STEP_PIN, GPIO.HIGH)
-    time.sleep(0.005)
-    GPIO.output(STEP_PIN, GPIO.LOW)
-    time.sleep(0.005)
+    GPIO.output(STEP, GPIO.HIGH)
+    time.sleep(0.001)  # 1 ms HIGH
+    GPIO.output(STEP, GPIO.LOW)
+    time.sleep(0.001)  # 1 ms LOW
 
 GPIO.cleanup()
