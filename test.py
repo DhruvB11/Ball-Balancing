@@ -1,6 +1,19 @@
-from class_stepper import StepperMotor
+import RPi.GPIO as GPIO
+import time
 
-stepper1 = StepperMotor()
-stepper1.__init__(step_pin=17, dir_pin=27)
+STEP_PIN = 17
+DIR_PIN = 27
 
-print(stepper1.current_angle)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(STEP_PIN, GPIO.OUT)
+GPIO.setup(DIR_PIN, GPIO.OUT)
+
+GPIO.output(DIR_PIN, GPIO.HIGH)  # or LOW
+
+for _ in range(200):
+    GPIO.output(STEP_PIN, GPIO.HIGH)
+    time.sleep(0.005)
+    GPIO.output(STEP_PIN, GPIO.LOW)
+    time.sleep(0.005)
+
+GPIO.cleanup()
