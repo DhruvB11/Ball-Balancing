@@ -10,11 +10,11 @@ class BBrobot:
         self.s3 = cs.StepperMotor(*pins[2])
 
         # Link lengths: [base, lower, upper, end-effector]
-        self.L = [0.04, 0.04, 0.065, 0.065]
-        self.ini_pos = [0, -20, 0.0632] #taking in account the resting position of the motors.
-        self.pz_max = 0.0732
-        self.pz_min = 0.0532
-        self.phi_max = 20
+        self.L = [0.0500, 0.0575, 0.0775, 0.1075]
+        self.ini_pos = [0, -17, 0.0549] #taking in account the resting position of the motors.
+        self.pz_max = 0.0955
+        self.pz_min = 0.0549
+        self.phi_max = 17
 
     def set_up(self):
         # No torque setup needed for steppers
