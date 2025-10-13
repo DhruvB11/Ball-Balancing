@@ -20,7 +20,7 @@ alpha = 0.7  # Low pass filter coefficient
 pid = PID(K_PID, k, alpha)
 
 # Define target position (center of the platform)
-target_position = [0.0, 0.0]
+target_position = [320.0, 240.0]
 
 try:
     robot.Initialize_posture()
