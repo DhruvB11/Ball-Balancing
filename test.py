@@ -1,9 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 
-DIR = 27
+DIR = 18
 STEP = 17
-ENA = 22  # optional
+ENA = 27
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(DIR, GPIO.OUT)
