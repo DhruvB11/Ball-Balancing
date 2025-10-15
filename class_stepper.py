@@ -2,9 +2,10 @@ import RPi.GPIO as GPIO
 import time
 
 class StepperMotor:
-    def __init__(self, step_pin, dir_pin, steps_per_rev=200):
+    def __init__(self, step_pin, dir_pin, ena_pin, steps_per_rev=200):
         self.step_pin = step_pin
         self.dir_pin = dir_pin
+        self.ena_pin = ena_pin
         self.steps_per_rev = steps_per_rev
         self.current_angle = 0.0
         self.angle_per_step = 360.0 / steps_per_rev
@@ -14,11 +15,13 @@ class StepperMotor:
             GPIO.setmode(GPIO.BCM)
         except RuntimeError:
             pass  # GPIO mode already set
-            
+
+        GPIO.setup(self.ena_pin, GPIO.OUT)
         GPIO.setup(self.step_pin, GPIO.OUT)
         GPIO.setup(self.dir_pin, GPIO.OUT)
         
         # Initialize pins to known state
+        GPIO.output(self.ena_pin, GPIO.HIGH)
         GPIO.output(self.step_pin, GPIO.LOW)
         GPIO.output(self.dir_pin, GPIO.LOW)
 
@@ -54,8 +57,10 @@ class StepperMotor:
         try:
             GPIO.output(self.step_pin, GPIO.LOW)
             GPIO.output(self.dir_pin, GPIO.LOW)
+            GPIO.output(self.ena_pin, GPIO.LOW)
             GPIO.setup(self.step_pin, GPIO.IN)
             GPIO.setup(self.dir_pin, GPIO.IN)
+            GPIO.setup(self.ena_pin, GPIO.IN)
         except Exception as e:
             print(f"Error cleaning up stepper motor: {e}")
             
