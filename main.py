@@ -8,7 +8,7 @@ from class_PID import PID
 camera = Camera()  # Fixed: Use correct class name
 
 # Initialize robot
-motor_pins = [[17, 18], [22, 23], [24, 25]]  # Example GPIO pin pairs for step/direction
+motor_pins = [[17, 18, 27], [22, 23, 5], [24, 25, 6]]  # [step, dir, ena] for each motor
 robot = BBrobot(motor_pins)
 robot.set_up()
 
