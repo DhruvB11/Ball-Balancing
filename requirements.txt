@@ -1,0 +1,15 @@
+# Ball Balancing Robot Requirements
+# Python dependencies for Raspberry Pi
+
+# GPIO control
+RPi.GPIO>=0.7.1
+
+# Camera interface for Raspberry Pi
+picamera2>=0.3.12
+
+# Computer vision
+opencv-python>=4.8.0
+numpy>=1.24.0
+
+# Optional: For better performance on Raspberry Pi
+# opencv-contrib-python>=4.8.0  # Uncomment if you need extra OpenCV modules
